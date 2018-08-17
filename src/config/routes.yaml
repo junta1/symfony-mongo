@@ -1,0 +1,7 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+mongo:
+  path: /
+  controller: App\Controller\ProductController::createAction
