@@ -21,10 +21,10 @@ class UsuarioRepositorio
         $data = new \DateTime();
 
         $usuario = new UsuarioEntidade();
-        $usuario->setUsuNome($input['usuaNome']);
-        $usuario->setUsuEmail($input['usuaEmail']);
-        $usuario->setUsuTelefone($input['usuaTelefone']);
-        $usuario->setUsuImagemPerfil($input['usuaImagemPerfil']);
+        $usuario->setUsuNome($input['usua_nome']);
+        $usuario->setUsuEmail($input['usua_email']);
+        $usuario->setUsuTelefone($input['usua_telefone']);
+        $usuario->setUsuImagemPerfil($input['usua_imagem_perfil']);
         $usuario->setCreatedAt($data);
 
         $this->dm->persist($usuario);
@@ -37,20 +37,16 @@ class UsuarioRepositorio
     {
         $usuario = UsuarioEntidade::class;
 
-        if ($input != null) {
+        $all = $this->dm->getRepository($usuario);
 
-            return $this->dm->createQueryBuilder($usuario)
-                ->field('usuNome')->equals($input['usuNome'])
-                ->sort('usuNome', 'ASC')
-                ->getQuery()
-                ->execute();
-        }
+        $select = $all->findBy(['usua_nome' => $input['usua_nome']]);
 
-        $query = $this->dm->createQueryBuilder($usuario)
-            ->getQuery()
-            ->execute();
+        dd($select);
+//        if (!$input) {
+//        }
 
-        return $query;
+
+        return $all->findAll();
     }
 
     public function find(int $id)

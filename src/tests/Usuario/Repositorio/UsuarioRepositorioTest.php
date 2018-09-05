@@ -27,19 +27,45 @@ class UsuarioRepositorioTest extends KernelTestCase
         $this->dm = $kernel->getContainer()
             ->get('doctrine_mongodb')
             ->getManager();
+
+        $this->repositorio = new UsuarioRepositorio($this->dm);
     }
 
     public function testSalvandoDadosSemTratamento()
     {
-        $input = [
-            'usuaNome' => 'Rafael',
-            'usuaEmail' => 'rafael@email.com',
-            'usuaTelefone' => '71992542075',
-            'usuaImagemPerfil' => null,
+        $input = $this->input();
+
+        $save = $this->repositorio->save($input);
+
+        $this->assertInternalType('object', $save);
+    }
+
+    public function testObtendoTodosOsDados()
+    {
+        $input = $this->input();
+
+        $all = $this->repositorio->all($input);
+
+        $this->assertInternalType('array', $all);
+    }
+
+    public function input()
+    {
+        return [
+            'usua_nome' => 'Rafael',
+            'usua_email' => 'rafael@email.com',
+            'usua_telefone' => '71992542075',
+            'usua_imagem_perfil' => null,
         ];
+    }
 
-        $this->repositorio = new UsuarioRepositorio($this->dm);
-
-        $this->repositorio->save($input);
+    public function output()
+    {
+        return [
+            'usua_nome' => 'Rafael',
+            'usua_email' => 'rafael@email.com',
+            'usua_telefone' => '71992542075',
+            'usua_imagem_perfil' => null,
+        ];
     }
 }
