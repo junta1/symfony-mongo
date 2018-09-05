@@ -5,7 +5,7 @@ namespace App\Document\Usuario\Entidade;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
- * @MongoDB\Entidade
+ * @MongoDB\Document
  */
 class UsuarioEntidade
 {
