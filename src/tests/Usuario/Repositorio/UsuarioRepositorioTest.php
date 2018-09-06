@@ -10,8 +10,6 @@ namespace App\Tests\Usuario\Repositorio;
 
 
 use App\Document\Usuario\Repositorio\UsuarioRepositorio;
-use PHPUnit\Framework\TestCase;
-use Stubs\DocumentManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class UsuarioRepositorioTest extends KernelTestCase
@@ -42,7 +40,14 @@ class UsuarioRepositorioTest extends KernelTestCase
 
     public function testObtendoTodosOsDados()
     {
-        $input = $this->input();
+        $all = $this->repositorio->all();
+
+        $this->assertInternalType('array', $all);
+    }
+
+    public function testObtendoDadosPorOrdemDoNome()
+    {
+        $input['usua_nome'] = 'Rafael';
 
         $all = $this->repositorio->all($input);
 
@@ -52,7 +57,7 @@ class UsuarioRepositorioTest extends KernelTestCase
     public function input()
     {
         return [
-            'usua_nome' => 'Rafael',
+            'usua_nome' => 'Rafael Mattos',
             'usua_email' => 'rafael@email.com',
             'usua_telefone' => '71992542075',
             'usua_imagem_perfil' => null,

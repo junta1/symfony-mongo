@@ -39,12 +39,21 @@ class UsuarioRepositorio
 
         $all = $this->dm->getRepository($usuario);
 
-        $select = $all->findBy(['usua_nome' => $input['usua_nome']]);
+        if ($input != null) {
 
-        dd($select);
-//        if (!$input) {
-//        }
+            $nameSearch = new \MongoRegex('/.*'.$input['usua_nome'].'.*/i');
 
+            $search = $this->dm->createQueryBuilder($usuario)
+                ->sort([
+                    'usua_nome' => 'asc'
+                ])
+                ->field('usua_nome')
+                ->equals($nameSearch)
+                ->getQuery()
+                ->toArray();
+
+            return $search;
+        }
 
         return $all->findAll();
     }

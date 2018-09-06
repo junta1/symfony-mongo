@@ -15,22 +15,22 @@ class UsuarioEntidade
     protected $usuId;
 
     /**
-     * @MongoDB\Field(type="string", name="usu_nome")
+     * @MongoDB\Field(type="string", name="usua_nome")
      */
     protected $usuNome;
 
     /**
-     * @MongoDB\Field(type="string", name="usu_telefone")
+     * @MongoDB\Field(type="string", name="usua_telefone")
      */
     protected $usuTelefone;
 
     /**
-     * @MongoDB\Field(type="string", name="usu_email")
+     * @MongoDB\Field(type="string", name="usua_email")
      */
     protected $usuEmail;
 
     /**
-     * @MongoDB\Field(type="string", name="usu_imagem_perfil")
+     * @MongoDB\Field(type="string", name="usua_imagem_perfil")
      */
     protected $usuImagemPerfil;
 
