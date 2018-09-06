@@ -54,6 +54,15 @@ class UsuarioRepositorioTest extends KernelTestCase
         $this->assertInternalType('array', $all);
     }
 
+    public function testObtendoApenasUmDado()
+    {
+        $id = '5b913bd0404f3d02006fe301';
+
+        $find = $this->repositorio->find($id);
+
+        $this->assertInternalType('array', $find);
+    }
+
     public function input()
     {
         return [

@@ -58,12 +58,11 @@ class UsuarioRepositorio
         return $all->findAll();
     }
 
-    public function find(int $id)
+    public function find(string $id)
     {
         $usuario = UsuarioEntidade::class;
 
         $find = $this->dm->find($usuario, $id);
-
         if (!$find) {
             throw new \Exception('Nenhum Usuário foi encontrado.');
         }
