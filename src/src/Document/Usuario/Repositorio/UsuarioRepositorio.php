@@ -63,6 +63,7 @@ class UsuarioRepositorio
         $usuario = UsuarioEntidade::class;
 
         $find = $this->dm->find($usuario, $id);
+
         if (!$find) {
             throw new \Exception('Nenhum Usuário foi encontrado.');
         }
@@ -70,14 +71,14 @@ class UsuarioRepositorio
         return $find;
     }
 
-    public function update(array $input, int $id)
+    public function update(array $input, string $id)
     {
         $usuario = $this->find($id);
 
-        $usuario->setUsuNome($input['usuaNome']);
-        $usuario->setUsuEmail($input['usuaEmail']);
-        $usuario->setUsuTelefone($input['usuaTelefone']);
-        $usuario->setUsuImagemPerfil($input['usuaImagemPerfil']);
+        $usuario->setUsuNome($input['usua_nome']);
+        $usuario->setUsuEmail($input['usua_email']);
+        $usuario->setUsuTelefone($input['usua_telefone']);
+        $usuario->setUsuImagemPerfil($input['usua_imagem_perfil']);
 
         $this->dm->flush();
 

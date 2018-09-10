@@ -38,6 +38,9 @@ class UsuarioRepositorioTest extends KernelTestCase
         $this->assertInternalType('object', $save);
     }
 
+    /**
+     * @group all
+     */
     public function testObtendoTodosOsDados()
     {
         $all = $this->repositorio->all();
@@ -61,6 +64,25 @@ class UsuarioRepositorioTest extends KernelTestCase
         $find = $this->repositorio->find($id);
 
         $this->assertInternalType('array', $find);
+    }
+
+    /**
+     * @group update
+     */
+    public function testEditandoUmDado()
+    {
+        $id = '5b913bd0404f3d02006fe301';
+
+        $input = [
+            'usua_nome' => 'Rafael Mattos Editado',
+            'usua_email' => 'rafaelEditado@email.com',
+            'usua_telefone' => '71992542075',
+            'usua_imagem_perfil' => null,
+        ];
+
+        $update = $this->repositorio->update($input, $id);
+
+        $this->assertInternalType('object', $update);
     }
 
     public function input()
